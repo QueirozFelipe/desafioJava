@@ -1,0 +1,60 @@
+server:
+  port: ${SERVER_PORT1:8080}
+  servlet:
+    encoding:
+      charset: 'UTF-8'
+      enabled: true
+      force: true
+    context-path: '/'
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:postgresql://${DB_URL1:localhost}:${DB_PORT1:5432}/${DB_NAME1:desafio_java}
+    username: ${DB_USERNAME1:postgres}
+    password: ${DB_PASSWORD1:desbr@DSL}
+    initialization-mode: always
+    connectionTestQuery: 'SELECT 1'
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: 'org.hibernate.dialect.PostgreSQLDialect'
+    hibernate:
+      ddl-auto: validate
+    generate-ddl: false
+
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+# Configuração do H2 apenas para o perfil de testes
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    url: jdbc:postgresql://${DB_URL1:localhost}:${DB_PORT1:5432}/${DB_NAME1:desafio_java_test}

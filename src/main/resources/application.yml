@@ -1,5 +1,5 @@
 server:
-  port: ${SERVER_PORT1:8080}
+  port: ${SERVER_PORT:8080}
   servlet:
     encoding:
       charset: 'UTF-8'
@@ -15,9 +15,9 @@ spring:
   main:
     allow-bean-definition-overriding: true
   datasource:
-    url: jdbc:postgresql://${DB_URL1:localhost}:${DB_PORT1:5432}/${DB_NAME1:desafio_java}
-    username: ${DB_USERNAME1:postgres}
-    password: ${DB_PASSWORD1:desbr@DSL}
+    url: jdbc:postgresql://${DB_URL:localhost}:${DB_PORT:5432}/${DB_NAME:desafio_java}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:desbr@DSL}
     initialization-mode: always
     connectionTestQuery: 'SELECT 1'
 
@@ -57,4 +57,4 @@ spring:
     activate:
       on-profile: test
   datasource:
-    url: jdbc:postgresql://${DB_URL1:localhost}:${DB_PORT1:5432}/${DB_NAME1:desafio_java_test}
+    url: jdbc:postgresql://${DB_URL:localhost}:${DB_PORT:5432}/${DB_NAME:desafio_java_test}
